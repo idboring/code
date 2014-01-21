@@ -1,0 +1,1 @@
+ cat pic_path | tr -d "u./(),'"'a-z''A-Z' | sed "s/ /\n/g" |sed "s/^0//g" > del_folder
