@@ -1,4 +1,4 @@
-# -*- coding: cp936 -*-
+# -*- coding: utf-8-*-
 import sqlite3
 import re
 import os
@@ -61,7 +61,7 @@ shutil.rmtree(temp_path,ignore_errors=True)
 os.chdir(ecimage_path)
 os.rmdir(temp_path)
 
-print "图片导出成功"
+print "鍥剧墖瀵煎嚭鎴愬姛"
                              
 
 
