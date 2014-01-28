@@ -1,14 +1,5 @@
 #coding=utf-8
-import sqlite3
-import re
-import os
-import shutil
-import glob
-import stat
-import sys
-import time
-import zipfile
-import zlib
+import sqlite3,re,os,shutil,glob,stat,sys,time,zipfile,zlib
 
 localtime = time.localtime()
 ctime = time.strftime("%Y%m%d%H%M%S",localtime)
