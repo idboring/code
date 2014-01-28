@@ -79,9 +79,3 @@ os.chdir(ecimage_path)
 os.rmdir(temp_path)
 
 print "图片导出成功"
-                             
-
-
-
-
-
