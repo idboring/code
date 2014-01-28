@@ -1,4 +1,4 @@
-# -*- coding: utf-8-*-
+#coding=utf-8
 import sqlite3
 import re
 import os
@@ -10,15 +10,32 @@ import time
 import zipfile
 import zlib
 
+localtime = time.localtime()
+ctime = time.strftime("%Y%m%d%H%M%S",localtime)
+
 database_path = "c:/test/ec_zzs.db"
 ecimage_path = "c:/test/EconomicCensus/"
 temp_path = "c:/test/temp"
 
 cu = sqlite3.connect(database_path)
 cx = cu.cursor()
+
+cx.execute("select _id from retailer_census_record")
+id_one = cx.fetchone()
+device_num = re.sub('^0','',filter(str.isdigit,str(id_one)))
+device_num = device_num[0:16]
+
 cx.execute("select img_path from company_census where data_status = 2")
+company_img_path = cx.fetchall()
+
+img_path = []
+img_path = company_img_path
+
 cx.execute("select save_path from retailer_census_record where data_status = 2")
-img_path = cx.fetchall()
+retailer_img_path = cx.fetchall()
+
+img_path.extend(retailer_img_path)
+##print len(img_path)
 
 img_path_number = []
 for i in img_path:
@@ -51,7 +68,7 @@ for root,dirs,files in os.walk(temp_path):
 index.close()
 shutil.copy(ecimage_path + 'index.txt',temp_path)
 
-output_zip = zipfile.ZipFile("c:/test/" + 'pic_zip.zip','w',zipfile.ZIP_DEFLATED)
+output_zip = zipfile.ZipFile("c:/test/" + 'PICTURE_' + device_num + ctime + '.zip' ,'w',zipfile.ZIP_DEFLATED)
 for root,dirs,files in os.walk(temp_path):
         for name in files:
                 output_zip.write(name)
