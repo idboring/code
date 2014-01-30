@@ -1,5 +1,14 @@
 #coding=utf-8
-import sqlite3,re,os,shutil,glob,stat,sys,time,zipfile,zlib
+import sqlite3
+import re
+import os
+import shutil
+import glob
+import stat
+import sys
+import time
+import zipfile
+import zlib
 
 localtime = time.localtime()
 ctime = time.strftime("%Y%m%d%H%M%S",localtime)
@@ -69,4 +78,4 @@ shutil.rmtree(temp_path,ignore_errors=True)
 os.chdir(ecimage_path)
 os.rmdir(temp_path)
 
-print "图片导出成功"
+print "sucess"
