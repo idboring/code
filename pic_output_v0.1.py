@@ -35,7 +35,6 @@ cx.execute("select save_path from retailer_census_record where data_status = 2")
 retailer_img_path = cx.fetchall()
 
 img_path.extend(retailer_img_path)
-##print len(img_path)
 
 img_path_number = []
 for i in img_path:
@@ -61,7 +60,6 @@ for root,dirs,files in os.walk(temp_path):
 		os.rename(name,c_name)
 		size = 0
 		size = os.path.getsize(os.path.join(root,c_name))
-##		print c_name + ',' + str(size)
 		index_item = c_name + ',' + str(size)
 		index.write(index_item + '\r\n')
 
