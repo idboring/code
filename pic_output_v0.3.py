@@ -36,14 +36,14 @@ for i in taskid:
     taskid_output = i
     
     #获得单位表中所有状态为上报，保存及强制保存单位的图片文件夹名称
-    cx.execute("select img_path from company_census where task_id = ? and data_status = 2",[taskid_output])
+    cx.execute("select img_path from company_census where task_id = ? and (data_status = 2 or data_status = 3 or data_status = 6)",[taskid_output])
     company_img_path = cx.fetchall()
 
     img_path = []
     img_path = company_img_path
     
     #获得个体表中所有状态为上报，保存及强制保存个体的图片文件夹名称
-    cx.execute("select save_path from retailer_census_record where task_id = ? and data_status = 2",[taskid_output])
+    cx.execute("select save_path from retailer_census_record where task_id = ? and (data_status = 2 or data_status = 3 or data_status = 6)",[taskid_output])
     retailer_img_path = cx.fetchall()
 
     img_path.extend(retailer_img_path)
@@ -84,6 +84,8 @@ for i in taskid:
 
     #index.txt复制到导出文件夹
     shutil.copy(ecimage_path + sep + 'index.txt',temp_path)
+
+    os.remove(ecimage_path + sep + 'index.txt')
 
     #获取系统时间，并转换成14位的格式
     localtime = time.localtime()
